@@ -1,0 +1,135 @@
+/* Base styling for the tool section */
+.tool {
+
+    /* Nested style for content within the tool section */
+    &__content {
+        padding: 20px; // Adds padding around the content for spacing
+        border-bottom: 1px dashed var(--green-theme-main-color); // Decorative dashed line under the header
+
+        /* Style for the header text within the content */
+        &__headerText {
+            color: var(--green-theme-sub-text-color); // Sets the text color using a CSS variable
+            display: inline-block; // Makes the header inline with other elements, allowing properties like vertical alignment
+            font-size: 22px; // Sets the font size
+            font-weight: 600; // Makes the font bold
+            line-height: 1em; // Sets the line height to match the font size for compact spacing
+            letter-spacing: 0.5px; // Increases spacing between letters slightly
+            position: relative; // Needed for positioning the pseudo-elements
+            text-transform: uppercase; // Transforms the text to uppercase for stylistic preference
+            padding: 5px 10px; // Adds padding inside the header text
+            border-bottom: 2px solid var(--green-theme-main-color); // Underlines the header with a solid line
+        }
+
+        /* Pseudo-elements for decorative details */
+        &__headerText::before, &__headerText::after {
+            position: absolute; // Positions the pseudo-elements absolutely relative to their parent
+            content: ''; // Necessary for pseudo-elements to display
+            width: 2px; // Sets the width of the decorative elements
+            height: 5px; // Sets the height of the decorative elements
+            background-color: var(--green-theme-main-color); // Fills the decorative elements with a theme color
+            bottom: -1px; // Positions the elements just below the text
+        }
+
+        &__headerText::before {
+            left: 0; // Positions the left decorative element at the start
+        }
+
+        &__headerText::after {
+            right: 0; // Positions the right decorative element at the end
+        }
+
+        /* Styling for the form inside the content section */
+        &__form {
+            margin-top: 40px; // Adds space above the form
+
+            /* Styling for the wrapper around form controls */
+            &__controlsWrapper {
+                display: grid; // Uses a grid layout for form controls
+                grid-template-columns: repeat(1, 1fr); // Creates a single column grid
+                gap: 40px; // Adds space between grid items
+                margin-bottom: 30px; // Adds space below the grid
+
+                /* Styling specific to each control within the wrapper */
+                div {
+                    position: relative; // Needed for absolute positioning of labels
+                    .keyField, .nonceField, .encryptDecryptTextArea, .resultTextArea, .modeBox, .algorithmBox {
+                        width: 100%; // Ensures controls fill their containers
+                        border: 2px solid var(--green-theme-main-color); // Borders the inputs for visual distinction
+                        padding: 16px 12px; // Pads the inside of the inputs for aesthetics
+                        transition: all 0.5s ease; // Smooth transitions for interaction states
+                        background-color: transparent; // Makes the input backgrounds transparent
+                        color: var(--green-theme-sub-text-color); // Text color for inputs
+                    }
+
+                    /* Styling for labels associated with each input */
+                    .keyLabel, .nonceLabel, .encryptDecryptLabel, .resultLabel, .modeLabel, .algorithmLabel {
+                        font-weight: 500; // Slightly bolds the label text
+                        position: absolute; // Positions the labels absolutely within their relative containers
+                        top: 7px; // Positions the label near the top of its input
+                        left: 12px; // Positions the label slightly indented from the left
+                        transition: all 0.2s ease; // Quick transitions for moving labels
+                        color: var(--green-theme-sub-text-color); // Label text color
+                        font-size: 16px; // Text size for labels
+                    }
+
+                    /* Styling and interactions for inputs when focused or filled */
+                    .keyField:focus, .nonceField:focus, .encryptDecryptTextArea:focus, .resultTextArea:focus, .modeBox:focus, .algorithmBox:focus {
+                        outline: none; // Removes default focus outline
+                    }
+
+                    .keyField:focus + .keyLabel, .keyField:valid + .keyLabel,
+                    .nonceField:focus + .nonceLabel, .nonceField:valid + .nonceLabel,
+                    .encryptDecryptTextArea:focus + .encryptDecryptLabel, .encryptDecryptTextArea:valid + .encryptDecryptLabel,
+                    .modeBox:focus + .modeLabel, .modeBox:valid + .modeLabel,
+                    .algorithmBox:focus + .algorithmLabel, .algorithmBox:valid + .algorithmLabel {
+                        font-size: 18px; // Enlarges the label on focus or when input is valid
+                        top: -25px; // Moves the label above the input
+                        left: 0px; // Aligns the label centrally
+                    }
+
+                    .resultLabel {
+                        font-size: 18px; // Enlarges the label on focus or when input is valid
+                        top: -25px; // Moves the label above the input
+                        left: 0px; // Aligns the label centrally
+                    }
+                }
+            }
+        }
+
+        /* Styling for the button wrapper to center the button */
+        .buttonWrapper {
+            display: flex; // Uses flexbox to align the button
+            justify-content: center; // Centers the button horizontally
+            width: 100%; // Takes the full width of its parent to ensure centering context
+        }
+
+        /* General styling for the button */
+        button {
+            cursor: pointer; // Changes the cursor to pointer when hovered over the button
+            padding: 10px 90px; // Sets the size of the button through padding
+            font-size: 2rem; // Sets large font size for text in the button
+            background: transparent; // Sets a transparent background
+            color: var(--green-theme-main-color); // Text color for the button
+            border: 1.5px solid var(--green-theme-main-color); // Outlines the button with a solid border
+            border-radius: 4px; // Rounds the corners of the button
+            font-weight: 500; // Medium font weight for the button text
+            
+
+            &:hover {
+                color: #000000; // Changes text color on hover
+                background: var(--green-theme-main-color); // Changes background on hover
+            }
+        }
+    }
+}
+
+/* Media query for adjusting styles on screens with a maximum width of 768px */
+@media only screen and (max-width: 768px) {
+    .contact__content__form {
+        text-align: center; // Centers text within the form
+
+        &__controlsWrapper {
+            grid-template-columns: repeat(1, 1fr); // Keeps a single column layout in the grid on smaller screens
+        }
+    }
+}

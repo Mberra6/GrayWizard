@@ -1,0 +1,95 @@
+.navbar {
+    background-color: var(--green-theme-nav-background-color); // Set the background color using a CSS variable
+    height: 80px; // Fixed height for the navbar
+    display: flex; // Use flexbox layout to align child elements
+    justify-content: center; // Center items horizontally in the navbar
+    align-items: center; // Center items vertically in the navbar
+    font-size: 1.2rem; // Set the base font size for text in the navbar
+    position: sticky; // Make the navbar stick at the top of the viewport as you scroll
+    z-index: 1; // Raise the navbar above other content that might overlap
+
+    &__container {
+        display: flex; // Flex layout to align logo and menu
+        align-items: center; // Center items vertically within the container
+        width: 100%; // Container takes full width of its parent
+        height: inherit; // Inherit height from the parent `.navbar`
+        padding: 0px 20px; // Padding on both sides of the container
+        flex: 1; // Flex grow to fill available space
+
+        &__logo {
+            color: var(--green-theme-main-color); // Set logo color using a CSS variable
+            cursor: pointer; // Change cursor to pointer to indicate clickable
+        }
+
+        &__menu {
+            display: flex; // Flex layout for menu items
+            list-style: none; // Remove bullets from list items
+            text-align: center; // Center align text for each menu item
+
+            &__item {
+                line-height: 40px; // Set line height for spacing between menu items
+                margin-right: 1.5rem; // Right margin for spacing between items
+                font-size: 1.6rem; // Font size larger than the base for visibility
+
+                &::after {
+                    content: ''; // Required for the pseudo-element to display
+                    display: block; // Block display type
+                    height: 3px; // Height of the underline effect
+                    width: 0; // Initial width set to 0 for transition effect
+                    background: transparent; // Transparent background by default
+                    transition: all 0.5s ease; // Smooth transition for hover effect
+                }
+
+                &:hover::after {
+                    width: 100%; // On hover, underline width extends to full width
+                    background: var(--green-theme-main-color); // Change background to highlight color on hover
+                }
+
+                &__links {
+                    color: var(--green-theme-main-color); // Text color for links
+                    text-decoration: none; // Remove underline from links
+                    padding: 0.5rem; // Padding around text for better clickability
+                }
+            }
+        }
+    }
+}
+
+/* Styles for the mobile menu icon */
+.nav-icon {
+    display: none; // Hide by default, visible only on mobile
+}
+
+/* Media queries for responsive design adjustments */
+@media only screen and (max-width: 768px) {
+    .navbar__container__menu {
+        display: flex; // Ensure menu is flex
+        flex-direction: column; // Stack menu items vertically
+        justify-content: center; // Center items vertically
+        width: 100%; // Full width to cover the screen
+        position: absolute; // Position absolutely to overlay content
+        top: 80px; // Positioned below the navbar
+        left: -110%; // Start off-screen to the left
+        opacity: 1; // Fully opaque
+        transition: all 0.5s ease; // Smooth transition for sliding in and out
+
+        &.active {
+            background: #181818; // Dark background for the active menu
+            left: 0px; // Move into view when active
+            opacity: 1; // Ensure it's fully visible
+        }
+
+        &__item {
+            border-bottom: 1px solid #282828; // Border to separate menu items
+            margin: 0px; // No margin
+            padding: 20px 0px; // Padding for each menu item
+        }
+    }
+
+    .nav-icon {
+        display: block; // Display the menu icon
+        cursor: pointer; // Pointer cursor for clickability
+        color: var(--green-theme-main-color); // Icon color
+        padding-right: 20px; // Padding on the right for spacing
+    }
+}

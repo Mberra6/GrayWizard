@@ -1,0 +1,60 @@
+/* Base styling for the tool section */
+.profile {
+
+    /* Nested style for content within the tool section */
+    &__content {
+        padding: 20px; // Adds padding around the content for spacing
+
+        /* Styling for the form inside the content section */
+        &__form {
+            margin-top: 40px; // Adds space above the form
+
+            /* Styling for the wrapper around form controls */
+            &__controlsWrapper {
+                display: grid; // Uses a grid layout for form controls
+                grid-template-columns: repeat(2, 1fr); // Creates a single column grid
+                gap: 40px; // Adds space between grid items
+                margin-bottom: 30px; // Adds space below the grid
+
+                /* Styling specific to each control within the wrapper */
+                div {
+                    position: relative; // Needed for absolute positioning of labels
+                    .firstName, .lastName, .email, .username, .createdAt {
+                        width: 100%; // Ensures controls fill their containers
+                        border: 2px solid var(--green-theme-main-color); // Borders the inputs for visual distinction
+                        padding: 16px 12px; // Pads the inside of the inputs for aesthetics
+                        transition: all 0.5s ease; // Smooth transitions for interaction states
+                        background-color: transparent; // Makes the input backgrounds transparent
+                        color: var(--green-theme-sub-text-color); // Text color for inputs
+                    }
+
+                    /* Styling for labels associated with each input */
+                    .firstNameLabel, .lastNameLabel, .emailLabel, .usernameLabel, .createdAtLabel {
+                        font-weight: 500; // Slightly bolds the label text
+                        position: absolute; // Positions the labels absolutely within their relative containers
+                        font-size: 18px; // Enlarges the label on focus or when input is valid
+                        top: -25px; // Moves the label above the input
+                        left: 0px; // Aligns the label centrally
+                        color: var(--green-theme-sub-text-color); // Label text color
+                    }
+
+                    /* Styling and interactions for inputs when focused or filled */
+                    .firstName:focus, .lastName:focus, .email:focus, .username:focus, .createdAt:focus {
+                        outline: none; // Removes default focus outline
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Media query for adjusting styles on screens with a maximum width of 768px */
+@media only screen and (max-width: 768px) {
+    .profile__content__form {
+        text-align: center; // Centers text within the form
+
+        &__controlsWrapper {
+            grid-template-columns: repeat(1, 1fr); // Keeps a single column layout in the grid on smaller screens
+        }
+    }
+}

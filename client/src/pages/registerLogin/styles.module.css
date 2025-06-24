@@ -1,0 +1,544 @@
+
+.auth_form_container {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    overflow: hidden;
+    background-color: var(--green-theme-nav-background-color);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.heading {
+    display: flex;
+    width: 200%;
+}
+
+.head {
+    width: 50%;
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: center;
+    transition: all 0.5s ease;
+    color: var(--green-theme-sub-text-color);
+}
+
+.slide_container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider_control {
+    position: relative;
+    display: flex;
+    margin: 25px 0 10px 0;
+    border: 1px solid var(--green-theme-nav-background-color);
+    border-radius: 5px;
+}
+
+.slider {
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+    color: var(--green-theme-sub-text-color);
+    font-weight: bolder;
+    line-height: 48px;
+    text-align: center;
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.radiologin {
+    display: none;
+}
+
+.radioregister {
+    display: none;
+}
+
+.slide_tab {
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    height: 100%;
+    width: 50%;
+    background: var(--green-theme-main-color);
+    border-radius: 5px;
+    transition: all 0.5s ease;
+}
+
+.radioregister:checked ~ .slide_tab {
+    left: 50%;
+}
+
+.radioregisterr:checked ~ label .register {
+    color: var(--green-theme-nav-background-color);
+}
+
+.radiologin:checked ~ label .login {
+    color: var(--green-theme-nav-background-color);
+}
+
+.form_data {
+    display: flex;
+    width: 200%;
+}
+
+.login {
+    width: 50%;
+    transition: all 0.5s ease;
+}
+
+.register {
+    width: 50%;
+    transition: all 0.5s ease;
+}
+
+.fields {
+    height: auto;
+    width: 100%;
+    margin: 15px 0px 10px 0px;
+}
+
+.input {
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid var(--green-theme-background-color);
+    font-size: 18px;
+    font-weight: bolder;
+
+}
+
+.login .fields .input:focus {
+    border-color: var(--green-theme-main-color);
+}
+
+.register .fields .input:focus {
+    border-color: var(--green-theme-main-color);
+}
+
+.input::placeholder {
+    color:black;
+}
+
+.registerlink {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bolder;
+    color: var(--green-theme-sub-text-color);
+}
+
+.loginlink {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bolder;
+    color: var(--green-theme-sub-text-color);
+}
+
+.registerlink a {
+    color:rgb(241, 119, 48);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.loginlink a {
+    color:rgb(241, 119, 48);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.registerlinka:hover {
+    text-decoration: underline;
+}
+
+.loginlinka:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--green-theme-main-color);
+}
+
+.btn input[type="submit"] {
+    position: relative;
+    color: var(--green-theme-nav-background-color);
+    background-color: var(--green-theme-main-color);
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bolder;
+    cursor: pointer;
+    border: none;
+}
+
+.btn_style {
+    position: absolute;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    border-radius: 5px;
+}
+
+.positive {
+    font-size: 1.5rem;
+    color: green;
+    padding-top: 15px;
+}
+
+.negative {
+    font-size: 1.5rem;
+    color: #cc0000;
+    padding-top: 15px;
+}
+
+/* make the section dynamic */
+
+@media screen and (max-width: 480px) {
+
+    .body {
+        height: 135vh;
+    }
+
+    .head {
+        font-size: 3rem;
+    }
+
+    .auth_form_container {
+        width: 350px;
+        top: 75%;
+    }
+
+    .slider {
+        line-height: 5rem;
+        font-size: 2rem;
+    }
+
+    .slide_container .form_data .login .fields input {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .login .btn {
+       margin-top: 2rem;
+    }
+
+    .slide_container .form_data .login .btn input[type="submit"] {
+        font-size: 1.75rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .register .fields input {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .register .btn {
+        margin-top: 2rem;
+     }
+ 
+     .slide_container .form_data .register .btn input[type="submit"] {
+         font-size: 1.75rem;
+         padding: 1.5rem;
+     }
+
+    .registerlink {
+        font-size: 1.25rem;
+    }
+
+    .loginlink {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .body {
+        height: 125vh;
+    }
+
+    .head {
+        font-size: 3rem;
+    }
+
+    .auth_form_container {
+        width: 400px;
+        top: 70%;
+    }
+
+    .slider {
+        line-height: 5rem;
+        font-size: 2rem;
+    }
+
+    .slide_container .form_data .login .fields input {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .login .btn {
+       margin-top: 2rem;
+    }
+
+    .slide_container .form_data .login .btn input[type="submit"] {
+        font-size: 1.75rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .register .fields input {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .register .btn {
+        margin-top: 2rem;
+     }
+ 
+     .slide_container .form_data .register .btn input[type="submit"] {
+         font-size: 1.75rem;
+         padding: 1.5rem;
+     }
+
+    .registerlink {
+        font-size: 1.25rem;
+    }
+
+    .loginlink {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .body {
+        height: 120vh;
+    }
+
+    .head {
+        font-size: 3.5rem;
+    }
+
+    .auth_form_container {
+        width: 450px;
+        top: 65%;
+    }
+
+    .slider {
+        line-height: 5rem;
+        font-size: 2rem;
+    }
+
+    .slide_container .form_data .login .fields input {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .login .btn {
+       margin-top: 2rem;
+    }
+
+    .slide_container .form_data .login .btn input[type="submit"] {
+        font-size: 1.75rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .register .fields input {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .slide_container .form_data .register .btn {
+        margin-top: 2rem;
+     }
+ 
+     .slide_container .form_data .register .btn input[type="submit"] {
+         font-size: 1.75rem;
+         padding: 1.5rem;
+     }
+
+    .registerlink {
+        font-size: 1.4rem;
+    }
+
+    .loginlink {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .body {
+        height: 120vh;
+    }
+
+    .head {
+        font-size: 4rem;
+    }
+
+    .auth_form_container {
+        top: 65%;
+        width: 450px;
+    }
+
+    .slider {
+        line-height: 5rem;
+        font-size: 2rem;
+    }
+
+    .slide_container .form_data .login .fields input {
+        font-size: 1.75rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .login .btn {
+       margin-top: 2rem;
+    }
+
+    .slide_container .form_data .login .btn input[type="submit"] {
+        font-size: 2rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .register .fields input {
+        font-size: 1.75rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .register .btn {
+        margin-top: 2rem;
+     }
+ 
+     .slide_container .form_data .register .btn input[type="submit"] {
+         font-size: 2rem;
+         padding: 1.75rem;
+     }
+     
+    .registerlink {
+        font-size: 1.5rem;
+    }
+
+    .loginlink {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1919px) {
+
+    .body {
+        height: 120vh;
+    }
+
+    .head {
+        font-size: 4rem;
+    }
+
+    .auth_form_container {
+        top: 65%;
+        width: 450px;
+    }
+
+    .slider {
+        line-height: 5rem;
+        font-size: 2rem;
+    }
+
+    .slide_container .form_data .login .fields input {
+        font-size: 1.75rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .login .btn {
+       margin-top: 2rem;
+    }
+
+    .slide_container .form_data .login .btn input[type="submit"] {
+        font-size: 2rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .register .fields input {
+        font-size: 1.75rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .register .btn {
+        margin-top: 2rem;
+     }
+ 
+     .slide_container .form_data .register .btn input[type="submit"] {
+         font-size: 2rem;
+         padding: 1.75rem;
+     }
+     
+    .registerlink {
+        font-size: 1.5rem;
+    }
+
+    .loginlink {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .body {
+        height: 120vh;
+    }
+
+    .head {
+        font-size: 4rem;
+    }
+
+    .auth_form_container {
+        top: 65%;
+        width: 500px;
+    }
+
+    .slider {
+        line-height: 5rem;
+        font-size: 2rem;
+    }
+
+    .slide_container .form_data .login .fields input {
+        font-size: 1.75rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .login .btn {
+       margin-top: 2rem;
+    }
+
+    .slide_container .form_data .login .btn input[type="submit"] {
+        font-size: 2rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .register .fields input {
+        font-size: 1.75rem;
+        padding: 1.75rem;
+    }
+
+    .slide_container .form_data .register .btn {
+        margin-top: 2rem;
+     }
+ 
+     .slide_container .form_data .register .btn input[type="submit"] {
+         font-size: 2rem;
+         padding: 1.75rem;
+     }
+     
+    .registerlink {
+        font-size: 1.5rem;
+    }
+
+    .loginlink {
+        font-size: 1.5rem;
+    }
+
+}

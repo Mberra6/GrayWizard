@@ -1,0 +1,74 @@
+.home {
+    position: relative; // Set position relative for child absolute positioning if needed
+    height: 100%; // Fill the entire height of its parent container
+    display: flex; // Use flexbox for layout
+    justify-content: center; // Center children horizontally
+    align-content: center; // Center children vertically
+    flex-direction: column; // Stack children vertically
+
+    // Styles for the text wrapper within the Home component
+    &__text-wrapper {
+        display: flex; // Use flexbox for layout
+        justify-content: center; // Center children horizontally
+
+        // Styles for the main heading within the text wrapper
+        h1 {
+            text-align: center; // Center the text horizontally
+            color: var(--green-theme-main-color); // Use the main color theme for text color
+            margin: 0; // Remove default margin
+            font-weight: 500; // Medium font weight for a bit of emphasis
+            font-size: 6.5rem; // Large font size for visibility
+            line-height: 5rem; // Line height less than font size for a compact look
+            position: relative; // Relative positioning for potential absolutely positioned children
+            overflow: hidden; // Hide overflow to facilitate the typing animation effect
+            white-space: nowrap; // Keep text in a single line to support the animation
+            animation: typingEffectAnimation 5s steps(40, end); // Apply a typing animation effect
+
+            // Additional styles for the 'small' class within the h1
+            .small {
+                font-size: 3.5rem; // Smaller font size than the main text
+                line-height: 0rem; // Line height set to 0 to keep the text compact
+            }
+        }
+    }
+}
+
+// Responsive design adjustments for different screen widths
+@media only screen and (max-width: 550px) {
+    .home__text-wrapper h1 {
+        font-size: 3rem; // Smaller font size for very small screens
+        line-height: 3rem; // Maintain line height for readability
+
+        .small {
+            font-size: 2rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 551px) and (max-width: 768px) {
+    .home__text-wrapper h1 {
+        font-size: 4rem; // Moderate font size for small tablets
+        line-height: 4rem; // Increased line height for clarity
+
+        .small {
+            font-size: 3rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 990px) {
+    .home__text-wrapper h1 {
+        font-size: 6rem; // Large font size for larger tablets and small desktops
+        line-height: 8rem; // More generous line height for aesthetic balance
+    }
+}
+
+// Definition of the typing effect animation
+@keyframes typingEffectAnimation {
+    from {
+        width: 0; // Start with a width of 0
+    }
+    to {
+        width: 100%; // End with a width that fills the container
+    }
+}

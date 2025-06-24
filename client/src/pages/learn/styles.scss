@@ -1,0 +1,56 @@
+.learn {
+    
+    &__contentWrapper {
+        display: flex; // Use flexbox to align child elements horizontally
+        flex-direction: column;
+        align-items: left; // Vertically center the items in the container
+        padding: 20px; // Add padding around the content for spacing
+        border-bottom: 1px dashed var(--green-theme-main-color);
+
+        /* Styling for the header text within the wrapper */
+        h2 {
+            color: var(--green-theme-sub-text-color);
+            display: inline-block;
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 1em;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 5px 10px;
+            border-bottom: 2px solid var(--green-theme-main-color);
+            margin-bottom: 20px;
+        }
+
+        h2::before, h2::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            height: 5px;
+            background-color: var(--green-theme-main-color);
+            bottom: -1px;
+        }
+
+        h2::before {
+            left: 0;
+        }
+
+        h2::after {
+            right: 0;
+        }
+
+        p {
+            color: var(--green-theme-sub-text-color);
+            font-size: 1.8rem;
+            line-height: 1.65;
+            padding-bottom: 20px;
+        }
+
+        ul {
+            color: var(--green-theme-sub-text-color);
+            font-size: 1.8rem;
+            line-height: 1.65;
+            padding-bottom: 20px;
+            padding-left: 40px;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+/* Importing Google Fonts for the application, using the Roboto font with a weight of 500. This provides a clean and modern aesthetic to the text across the entire application. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+/* Root CSS variables, defined to maintain a consistent theme across the application and allow easy theme management and adjustments. */
+:root {
+  --green-theme-background-color: #1d1d1d; /* Dark background for all pages to enhance the contrast with text and other elements. */
+  --green-theme-main-color: #17a862; /* Bright dark green used as the main color for highlights and important UI components such as buttons and links. */
+  --green-theme-sub-text-color: #ffffff; /* White color for text provides maximum readability against the dark background. */
+  --green-theme-nav-background-color: #181818; /* Slightly lighter shade of black used for navigation bars, creating a subtle visual separation from other elements. */
+}
+
+/* Universal box-sizing set to border-box, which includes padding and border in the element's total width and height. This makes layout design more predictable and easier to manage. */
+* {
+  box-sizing: border-box;
+  padding: 0; /* Removes default padding from all elements. */
+  margin: 0; /* Removes default margin from all elements. */
+  scroll-behavior: smooth; /* Enables smooth scrolling for anchor links and navigational actions within the page. */
+}
+
+/* Sets the base font size for responsive typography. 62.5% makes 1rem equal to 10px (usually 16px is 100%, so 10px is 62.5% of 16px), simplifying rem calculations. */
+html {
+  font-size: 62.5%; 
+  height: 100%; /* Ensures the html element stretches to the full height of the viewport, which is critical for full-page layouts. */
+}
+
+/* Body styling to apply the theme background color and ensure it fills the entire viewport height. */
+body {
+  background: var(--green-theme-background-color); /* Sets the background color for the entire website to a dark shade defined by the theme variable. */
+  height: 100%; /* Matches the height of the html element to ensure full page height management. */
+}
+
+/* Ensures the root div element (where React components mount) also stretches to fill the entire viewport height. This is essential for handling layouts that require full height, such as a landing or login page. */
+#root {
+  height: 100%;
+}
+
+/* Styling the scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the vertical scrollbar */
+  height: 10px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--green-theme-background-color); /* Background color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--green-theme-main-color); /* Color of the scrollbar itself */
+  border-radius: 5px; /* Rounded corners for the scrollbar */
+  border: 2px solid var(--green-theme-background-color); /* Optional: Adding some border */
+}
+
+/* Styling the scrollbar for Firefox */
+* {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: var(--green-theme-main-color) var(--green-theme-background-color); /* thumb and track color */
+}
+

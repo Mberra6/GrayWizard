@@ -1,0 +1,9 @@
+// Root style for the entire application
+.App {
+    height: 100%; // Ensure the app fills the entire height of the viewport
+
+    // Specific style for the main content area of the application
+    &__main-page-content {
+        height: calc(100% - 80px); // Calculate the height by subtracting the height of the navbar (assumed 80px)
+    }
+}

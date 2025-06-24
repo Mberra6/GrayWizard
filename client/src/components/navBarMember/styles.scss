@@ -1,0 +1,105 @@
+.navbar {
+    background-color: var(--green-theme-nav-background-color); // Background color set via CSS variable for theme consistency
+    height: 80px; // Fixed height for the navbar
+    display: flex; // Flexbox display to align child elements
+    justify-content: center; // Center items horizontally
+    align-items: center; // Center items vertically
+    font-size: 1.2rem; // Base font size for text within the navbar
+    position: sticky; // Sticky positioning to keep the navbar visible at the top on scroll
+    z-index: 1; // Stack order to ensure the navbar is above other content
+
+    // Container within the navbar
+    &__container {
+        display: flex; // Flexbox display to align child elements
+        align-items: center; // Center items vertically within the container
+        width: 100%; // Container takes full width of the navbar
+        height: inherit; // Inherits height from its parent (navbar)
+        padding: 0px 20px; // Horizontal padding for inner spacing
+        flex: 1; // Flex grow to take available space
+
+        // Logo within the navbar container
+        &__logo {
+            color: var(--green-theme-main-color); // Logo color set via CSS variable
+            cursor: pointer; // Pointer cursor on hover to indicate clickability
+        }
+
+        // Menu list within the navbar container
+        &__menu {
+            display: flex; // Flexbox display to align menu items horizontally
+            list-style: none; // No bullet points for list items
+            text-align: center; // Center text within each menu item
+
+            // Individual menu items
+            &__item {
+                line-height: 40px; // Line height for spacing and aligning text vertically
+                margin-right: 1.5rem; // Right margin for spacing between menu items
+                font-size: 1.6rem; // Larger font size for menu items
+
+                // After pseudo-element for animated underline effect
+                &::after {
+                    content: ''; // Necessary for pseudo-elements
+                    display: block; // Block display to occupy full width of content
+                    height: 3px; // Height of the underline
+                    width: 0; // Initial width set to 0
+                    background: transparent; // Transparent background
+                    transition: all 0.5s ease; // Transition effect for animation
+                }
+
+                // Hover state for menu items
+                &:hover::after {
+                    width: 100%; // Full width on hover
+                    background: var(--green-theme-main-color); // Underline color on hover
+                }
+
+                // Links within menu items
+                &__links {
+                    color: var(--green-theme-main-color); // Text color for links
+                    text-decoration: none; // No underline for links
+                    padding: 0.5rem; // Padding around text for better clickability
+                }
+            }
+        }
+    }
+}
+
+// Mobile menu toggle icon
+.nav-icon {
+    display: none; // Initially hidden in desktop view
+}
+
+// Media query for mobile devices
+@media only screen and (max-width: 768px) {
+    // Adjustments for the menu in mobile view
+    .navbar__container__menu {
+        display: flex; // Flexbox display to manage layout
+        flex-direction: column; // Stack items vertically
+        justify-content: center; // Center items vertically
+        width: 100%; // Full width to cover screen
+        position: absolute; // Absolute positioning to float over other content
+        top: 80px; // Position below the navbar
+        left: -110%; // Start off-screen to the left for animation
+        opacity: 1; // Fully opaque
+        transition: all 0.5s ease; // Smooth transition for movement
+
+        &.active {
+            background: #181818; // Dark background for active state
+            left: 0px; // Move to visible position
+            opacity: 1; // Ensure it's fully visible
+        }
+
+        // Style adjustments for menu items in mobile view
+        &__item {
+            border-bottom: 1px solid #282828; // Bottom border for separation
+            margin: 0px; // Remove margins
+            padding: 20px 0px; // Vertical padding for touch targets
+        }
+    }
+
+    // Toggle icon style in mobile view
+    .nav-icon {
+        display: block; // Make visible
+        cursor: pointer; // Pointer cursor for interactivity
+        color: var(--green-theme-main-color); // Icon color
+        padding-right: 20px; // Right padding for spacing
+    }
+}

@@ -1,0 +1,176 @@
+.passwordStrengthChecker {
+
+    .passwordStrengthCheckerContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    
+        .inputWrapper {
+            display: flex; // Ensures that children (input and button) are in a row
+            align-items: center; // Aligns items vertically in the middle
+            background-color: var(--green-theme-nav-background-color);
+            padding: 20px 40px;  // Increased padding for larger touch area
+            border-radius: 30px; // Smooth, rounded corners
+            position: relative;
+        
+            .passwordInput, .checkButton {
+                font-size: 1.8rem; // Larger text for better readability
+                padding: 12px 24px; // More padding for a bigger, more clickable area
+                border: 2px solid var(--green-theme-main-color); // Slightly thicker border to match increased element sizes
+            }
+        
+            .passwordInput {
+                flex-grow: 1;
+                padding-right: 30px; /* Make space for the icon inside the input */
+                margin-right: 10px;
+            }
+        
+            .visibilityButton {
+                position: absolute;
+                right: 250px; /* Adjust based on your layout */
+                height: 100%;
+                top: 0;
+                font-size: 1.6rem;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                color: var(--green-theme-main-color);
+            }
+        
+            .checkButton {
+                cursor: pointer;
+                background: transparent; // Keeps the background transparent
+                color: var(--green-theme-main-color); // Maintains text color
+                border-radius: 8px; // Slightly larger radius for a more pronounced effect
+                transition: all 0.3s ease; // Smooth transition for hover effects
+        
+                &:hover {
+                    color: #ffffff; // White text on hover for better contrast
+                    background: var(--green-theme-main-color); // Button background color on hover
+                }
+            }
+        }
+        
+
+        .resultMessage {
+            border: 1px solid;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            width: 80%;
+            text-align: center;
+
+            &.pass {
+                border-color: green;
+                background-color: #5cb85c;
+                color: #FFFFFF;
+            }
+
+            &.fail {
+                border-color: #e84e4f;
+                background-color: #9c2b2e;
+                color: #FFFFFF;
+            }
+
+            p {
+                margin: 5px 0;
+            }
+
+            ul {
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+        .largeText {
+            font-size: 1.8rem; // Larger text for important alerts
+            font-weight: bold;
+        }
+
+        .largeSubText {
+            font-size: 1.8rem;
+        }
+
+        .listText {
+            font-size: 1.8rem;
+            text-align: left;
+            list-style: circle;
+            list-style-position: inside;
+        }
+
+        .listLargeText {
+            text-align: left;
+            align-items: left;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+        }
+
+        .noteText {
+            padding-top: 50px;
+            text-align: left;
+            align-items: left;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+        }
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .passwordStrengthChecker .passwordStrengthCheckerContainer {
+        .inputWrapper {
+            padding: 10px 20px;  // Reduced padding for small screens
+
+            .passwordInput, .checkButton {
+                font-size: 1.4rem;
+                padding: 12px 12px;
+            }
+
+            .visibilityButton {
+                right: 170px; /* Adjust based on your layout */
+                font-size: 1.4rem;
+            }
+        }
+        .resultMessage {
+            width: 95%; // Full width to utilize available space
+        }
+        .largeText, .largeSubText, .listText, .listLargeText, .noteText {
+            font-size: 1.4rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 551px) and (max-width: 768px) {
+    .passwordStrengthChecker .passwordStrengthCheckerContainer {
+        .inputWrapper {
+            padding: 20px 30px;  // Reduced padding for small screens
+
+            .passwordInput, .checkButton {
+                font-size: 1.6rem;
+                padding: 12px 20px;
+            }
+
+            .visibilityButton {
+                right: 210px; /* Adjust based on your layout */
+                font-size: 1.5rem;
+            }
+        }
+        .resultMessage {
+            width: 90%; // Full width to utilize available space
+        }
+        .largeText, .largeSubText, .listText, .listLargeText, .noteText {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 990px) {
+    .passwordStrengthChecker .passwordStrengthCheckerContainer {
+        .inputWrapper {
+            padding: 22px 35px; // Adjust padding slightly for small laptops and large tablets
+        }
+        .resultMessage {
+            width: 85%; // Use more width as the screen gets larger
+        }
+    }
+}

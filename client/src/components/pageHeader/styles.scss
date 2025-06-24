@@ -1,0 +1,33 @@
+.wrapper {
+    display: flex; // Use flexbox to align child elements horizontally
+    align-items: center; // Vertically center the items in the container
+    padding: 20px; // Add padding around the content for spacing
+    border-bottom: 1px dashed var(--green-theme-main-color); // Decorative dashed line under the header
+
+    /* Styling for the header text within the wrapper */
+    h2 {
+        font-size: 36px; // Large font size for header text making it prominent
+        font-weight: 700; // Bold font weight for emphasis
+        letter-spacing: 1.5px; // Space out the characters slightly for better readability
+        line-height: 4.5rem; // Line height equal to the font size ensures compact appearance
+        text-transform: capitalize; // Capitalize the first letter of each word
+        color: var(--green-theme-main-color); // Color for the text using a CSS variable
+        display: flex; // Use flex to allow alignment properties to take effect
+        flex-grow: 1; // Allow the header text to fill the container space
+    }
+
+    /* Styling for the icon span next to the header text */
+    span {
+        svg {
+            color: var(--green-theme-main-color); // Set the color of the icon using the same theme color
+        }
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .wrapper{
+        h2 {
+            font-size: 28px;
+        }
+    }
+}
