@@ -130,14 +130,14 @@
 
 .registerlink {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 1.5rem;
     font-weight: bolder;
     color: var(--green-theme-sub-text-color);
 }
 
 .loginlink {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 1.5rem;
     font-weight: bolder;
     color: var(--green-theme-sub-text-color);
 }
@@ -191,15 +191,17 @@
 }
 
 .positive {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: green;
-    padding-top: 15px;
+    margin-top: 2rem;
 }
 
 .negative {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: #cc0000;
-    padding-top: 15px;
+    margin-top: 2rem;
 }
 
 /* make the section dynamic */
