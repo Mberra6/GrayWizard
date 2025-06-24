@@ -4,7 +4,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
-import AdminRoutes from './utils/AdminRoutes';
 import PrivateRoutes from './utils/PrivateRoutes';
 import GeneralRoutes from './utils/GeneralRoutes';
 import Home from './pages/home';

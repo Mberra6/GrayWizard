@@ -20,7 +20,7 @@ const data = [
 // Functional component definition using arrow function syntax
 const NavBarMember = () => {
     const navigate = useNavigate(); // Hook to perform navigation
-    const { setAuth, user } = useAuth(); // Custom hook to access auth state and update it
+    const { setAuth } = useAuth(); // Custom hook to access auth state and update it
     const [toggleIcon, setToggleIcon] = useState(false); // State for managing mobile menu toggle
 
     // Function to handle mobile menu icon toggle

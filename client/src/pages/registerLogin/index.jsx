@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 
 export const RegisterLogin = () => {
-    const { setAuth, user } = useAuth();
+    const { setAuth } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
     const [rPassword, setRpass] = useState('');
@@ -146,7 +146,7 @@ export const RegisterLogin = () => {
                                 }
                             })()}
                             <div className={styles.registerlink}>
-                                Not a Member? <a className={styles.registerlinka} href="#" ref={registerNow}>Register Now</a>
+                                Not a Member? <a className={styles.registerlinka} href="/registerLogin" ref={registerNow}>Register Now</a>
                             </div>
                         </form>
                         <form className={styles.register} onSubmit={handleSubmitRegister}>
@@ -180,7 +180,7 @@ export const RegisterLogin = () => {
                                 }
                             })()}
                             <div className={styles.loginlink}>
-                                Already have an account? <a className={styles.loginlinka} href="#" ref={loginNow}>Login Now</a>
+                                Already have an account? <a className={styles.loginlinka} href="/registerLogin" ref={loginNow}>Login Now</a>
                             </div>
                         </form>
                     </div>
