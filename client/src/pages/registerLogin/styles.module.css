@@ -120,7 +120,7 @@
     border-color: var(--green-theme-main-color);
 }
 
-.register .fields .input:focus {
+.register .fields .input:not(.inputError):focus {
     border-color: var(--green-theme-main-color);
 }
 
@@ -191,6 +191,7 @@
 }
 
 .positive {
+    text-align: center;
     font-size: 1.3rem;
     font-weight: 600;
     color: green;
@@ -198,10 +199,15 @@
 }
 
 .negative {
+    text-align: center;
     font-size: 1.3rem;
     font-weight: 600;
     color: #cc0000;
     margin-top: 2rem;
+}
+
+.inputError {
+    border-color: red;
 }
 
 /* make the section dynamic */
@@ -261,6 +267,14 @@
     .loginlink {
         font-size: 1.25rem;
     }
+
+    .positive {
+        font-size: 1.1rem;
+    }
+
+    .negative {
+        font-size: 1.1rem;
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
@@ -317,6 +331,14 @@
     .loginlink {
         font-size: 1.25rem;
     }
+
+    .positive {
+        font-size: 1.2rem;
+    }
+
+    .negative {
+        font-size: 1.2rem;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -372,6 +394,14 @@
 
     .loginlink {
         font-size: 1.4rem;
+    }
+
+    .positive {
+        font-size: 1.25rem;
+    }
+
+    .negative {
+        font-size: 1.25rem;
     }
 }
 
@@ -541,6 +571,14 @@
 
     .loginlink {
         font-size: 1.5rem;
+    }
+
+    .positive {
+        font-size: 1.4rem;
+    }
+
+    .negative {
+        font-size: 1.4rem;
     }
 
 }

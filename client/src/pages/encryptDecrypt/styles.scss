@@ -132,4 +132,15 @@
             grid-template-columns: repeat(1, 1fr); // Keeps a single column layout in the grid on smaller screens
         }
     }
+
+    .tool {
+
+        /* Nested style for content within the tool section */
+        &__content {
+            button {
+                padding: 10px 90px; // Sets the size of the button through padding
+                font-size: 1.6rem;
+            }
+        }
+    }
 }
