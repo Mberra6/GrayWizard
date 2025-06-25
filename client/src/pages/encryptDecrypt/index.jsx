@@ -58,7 +58,7 @@ const EncryptionDecryption = () => {
     // Calls the API to perform encryption or decryption when the form is submitted
     const handleEncryptDecrypt = async (event) => {
         event.preventDefault(); // Prevent the form from submitting traditionally
-        const apiUrl = mode === 'encrypt' ? `/encrypt` : `/decrypt`; // Construct the API URL based on mode
+        const apiUrl = mode === 'encrypt' ? `/api/encrypt` : `/api/decrypt`; // Construct the API URL based on mode
         const payload = {
             algorithm,
             text,

@@ -18,11 +18,14 @@ const Profile = () => {
     // Fetch user data from the server
     useEffect(() => {
         const userID = localStorage.getItem('userId'); // Retrieve the userID from local storage
+        const token = localStorage.getItem('token');
         if (!userID) return; // If userID is not found, do nothing
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/member/account/${userID}`);
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/member/account/${userID}`, {
+                    headers: { authorization: "Bearer " + token },
+                });
                 const data = await response.json();
                 if (response.ok) {
                     setUserData({

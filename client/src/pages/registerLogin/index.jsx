@@ -72,7 +72,7 @@ export const RegisterLogin = () => {
 
     const handleSubmitRegister = (e) => {
         e.preventDefault();
-        axios.post(`${process.env.REACT_APP_API_URL}/register`, {
+        axios.post(`${process.env.REACT_APP_API_URL}/api/register`, {
         username: username,
         email: email,
         firstName: firstName,
@@ -120,7 +120,7 @@ export const RegisterLogin = () => {
 
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
-        await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/login`, {
         email: email,
         username: username,
         password: password

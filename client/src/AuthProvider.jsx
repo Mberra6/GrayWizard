@@ -34,7 +34,7 @@
      const isAuth = async () => {
        try {
          const res = await axios.get(
-           `${process.env.REACT_APP_API_URL}/member/auth`, 
+           `${process.env.REACT_APP_API_URL}/api/member/auth`, 
            {
              headers: { authorization: "Bearer " + token }, // Include the token in the authorization header.
              withCredentials: true // Ensure credentials are included in the request for session handling.

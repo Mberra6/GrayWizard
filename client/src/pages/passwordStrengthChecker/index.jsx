@@ -18,7 +18,7 @@ const PasswordStrengthChecker = () => {
             const payload = {
               password
             };
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/passwordStrength`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/passwordStrength`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

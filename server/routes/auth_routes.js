@@ -6,7 +6,7 @@ const userControllers = require('../controllers/users_controller'); // Import us
 const router = express.Router(); // Create Express router instance
 
 // Route to check if user is authorized
-router.get('/auth', checkAuth.auth);
+router.get('/auth', checkAuth.authCheckHandler);
 
 // Route to get user's details
 router.get('/account/:userId', userControllers.userDetails);
