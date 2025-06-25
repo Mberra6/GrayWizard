@@ -58,6 +58,23 @@ const EncryptionDecryption = () => {
     // Calls the API to perform encryption or decryption when the form is submitted
     const handleEncryptDecrypt = async (event) => {
         event.preventDefault(); // Prevent the form from submitting traditionally
+
+        // Client-side validation
+        if (!text.trim()) {
+            setResultText("Please enter some text to " + mode + ".");
+            return;
+        }
+
+        if (keyRequired && !encryptionKey.trim()) {
+            setResultText("Please provide an encryption key.");
+            return;
+        }
+
+        if (((algorithm === 'Chacha20' && mode === 'decrypt') || (algorithm.startsWith('Salsa20') && mode === 'decrypt')) && !nonce.trim()) {
+            setResultText("Please provide a nonce for decryption.");
+            return;
+        }
+
         const apiUrl = mode === 'encrypt' ? `/api/encrypt` : `/api/decrypt`; // Construct the API URL based on mode
         const payload = {
             algorithm,
@@ -74,7 +91,12 @@ const EncryptionDecryption = () => {
                 },
                 body: JSON.stringify(payload)
             });
-            const data = await response.json();
+            let data;
+            try {
+            data = await response.json();
+            } catch (err) {
+            throw new Error("Invalid response from server");
+            }
             if (!response.ok) {
                 throw new Error(data.message || "An error occurred during the API call");
             }

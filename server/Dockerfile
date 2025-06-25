@@ -13,7 +13,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the backend code
+# Copy Python requirements and install them
+COPY requirements.txt ./
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the backend code (including your scripts)
 COPY . .
 
 # Expose the port your Express app runs on

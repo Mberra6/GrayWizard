@@ -38,7 +38,7 @@ const executePythonScript = (action, text, key, algorithm, nonce='undefined') =>
       pythonProcessArgs.push(algorithm); // Add algorithm for AES/Blowfish/TDES
     }
 
-    const pythonProcess = spawn('python', pythonProcessArgs);
+    const pythonProcess = spawn('python3', pythonProcessArgs);
 
     let data = '';
 
@@ -64,7 +64,7 @@ exports.encryptText = async (req, res) => {
   const { text, key, algorithm } = req.body;
 
   if (!text || !key || !algorithm) {
-    return res.status(400).send("Missing required parameters");
+    return res.status(400).json({ message: "Missing required parameters" });
   }
 
   try {
@@ -76,14 +76,14 @@ exports.encryptText = async (req, res) => {
         res.json(result); // Send the parsed JSON object as the response
       } catch (parseError) {
         console.error('Failed to parse encryption result:', parseError);
-        res.status(500).send("Failed to parse encryption result.");
+        res.status(500).json({ message: "Failed to parse encryption result." });
       }
     } else {
       res.json({ result: encryptedText }); // For other algorithms, send as plain text
     }
   } catch (error) {
     console.error('Encryption failed:', error);
-    res.status(500).send("Encryption failed: " + error);
+    res.status(500).json({ message: "Encryption failed: " + error });
   }
 };
 
@@ -91,11 +91,14 @@ exports.decryptText = async (req, res) => {
   const { text, key, algorithm, nonce } = req.body;
 
   if (!text || !key || !algorithm) {
-    return res.status(400).send("Missing required parameters");
+    return res.status(400).json({ message: "Missing required parameters" });
   }
 
   try {
     if (algorithm.startsWith('Chacha') || algorithm.startsWith('Salsa')) {
+      if (!nonce) {
+        return res.status(400).json({ message: "Missing nonce" });
+      }
       const decryptedText = await executePythonScript('decrypt', text, key, algorithm, nonce);
       res.json({ result: decryptedText });
     } else {
@@ -103,6 +106,6 @@ exports.decryptText = async (req, res) => {
       res.json({ result: decryptedText });
     }
   } catch (error) {
-    res.status(500).send("Decryption failed: " + error);
+    res.status(500).json({ message: "Decryption failed: " + error });
   }
 };
