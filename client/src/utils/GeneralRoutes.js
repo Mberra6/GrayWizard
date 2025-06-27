@@ -10,20 +10,12 @@ import { useAuth } from '../AuthProvider';
 const GeneralRoutes = () => {
     // Access authentication status and user details from the context
     const { auth } = useAuth();
-
-    // Retrieve 'isAdmin' status from local storage and convert it to an integer for proper evaluation
-    const isAdmin = parseInt(localStorage.getItem('isAdmin'));
     
-    // Render routes conditionally based on the user's authentication and admin status
+    // Render routes conditionally based on the user's authentication
     return (
         <>
         { (() => {
-            // If the user is authenticated and an admin, redirect to the admin home page
-            if (auth && isAdmin === 1) {
-                return <Navigate to="/admin/home"/>
-            } 
-            // If the user is authenticated but not an admin, redirect to the member home page
-            else if (auth) {
+           if (auth) {
                 return <Navigate to="/member/home"/>
             } 
             // If not authenticated, allow access to the general public routes

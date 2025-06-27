@@ -26,7 +26,6 @@ class Members {
             first_name,
             last_name,
             password,
-            is_admin,
             created_at
         )
         VALUES(
@@ -35,7 +34,6 @@ class Members {
             '${this.firstName}',
             '${this.lastName}',
             '${this.password}',
-            False,
             '${createdAtDate}'
         );
         `;

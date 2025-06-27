@@ -127,8 +127,6 @@ export const RegisterLogin = () => {
         })
         .then(
             response => {
-                localStorage.setItem('userId', response.data.id);
-                localStorage.setItem('isAdmin', response.data.isAdmin);
                 localStorage.setItem('token', response.data.accessToken);
                 setAuth(true);
                 navigate('/member/home');

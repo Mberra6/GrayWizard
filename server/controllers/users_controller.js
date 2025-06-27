@@ -112,7 +112,7 @@ const authenticateUserById = async (id, password) => {
 
 // Function to generate JSON Web Token
 const generateAccessToken = (user) => {
-    return jwt.sign({ id: user.id, username: user.username}, process.env.SESSION_SECRET, { expiresIn: "24h" }); // Generate JWT with user details and expiration time
+    return jwt.sign({ id: user.member_id, username: user.username}, process.env.SESSION_SECRET, { expiresIn: "24h" }); // Generate JWT with user details and expiration time
 };
 
 // Function to register a new user
@@ -156,8 +156,6 @@ exports.userLogin = async (req, res, next) => {
             const accessToken = generateAccessToken(member[0]); // Generate access token for the user
 
             return res.status(201).json({
-                id: member[0].member_id,
-                isAdmin: member[0].is_admin,
                 accessToken: accessToken
             });
         } else if (await authenticateUserByUsername(username, password)) {
@@ -165,8 +163,6 @@ exports.userLogin = async (req, res, next) => {
             const accessToken = generateAccessToken(member[0]); // Generate access token for the user
 
             return res.status(201).json({
-                id: member[0].member_id,
-                isAdmin: member[0].is_admin,
                 accessToken: accessToken
             });
         } else {

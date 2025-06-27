@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { FaUserAlt } from "react-icons/fa"; // Icon for visual enhancement
 import PageHeader from '../../components/pageHeader'; // Reusable component for page headers
 import { Animate } from 'react-simple-animate'; // Animation library to add visual effects
+import { useAuth } from "../../AuthProvider";
 import './styles.scss'; // Stylesheet for specific styling
 
 const Profile = () => {
+    const { user } = useAuth();
     // State to store the user data
     const [userData, setUserData] = useState({
         username: '',
@@ -17,7 +19,7 @@ const Profile = () => {
 
     // Fetch user data from the server
     useEffect(() => {
-        const userID = localStorage.getItem('userId'); // Retrieve the userID from local storage
+        const userID = user.id // Retrieve the userID from local storage
         const token = localStorage.getItem('token');
         if (!userID) return; // If userID is not found, do nothing
 
@@ -44,7 +46,7 @@ const Profile = () => {
         };
 
         fetchData();
-    }, []);
+    }, [user.id]);
 
     return (
         <section id="profile" className='profile'>

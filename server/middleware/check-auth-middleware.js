@@ -22,5 +22,6 @@ exports.auth = (req, res, next) => {
 
 // Explicit endpoint for /user/auth
 exports.authCheckHandler = (req, res) => {
-    res.status(200).json({ message: "Authenticated" });
+    const { id } = req.user;
+    res.status(200).json({ id });
 };

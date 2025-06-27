@@ -11,20 +11,12 @@ import { useAuth } from '../AuthProvider';
 const PrivateRoutes = () => {
     // Retrieve the authentication status from the context
     const { auth } = useAuth();
-
-    // Parse the 'isAdmin' value from local storage to determine if the user is an admin
-    const isAdmin = parseInt(localStorage.getItem('isAdmin'));
     
     // Conditionally render routes or redirect based on user status
     return (
         <>
         { (() => {
-            // If the user is authenticated and is an admin, redirect them to the admin home page
-            if (auth && isAdmin === 1) {
-                return <Navigate to="/admin/home"/>
-            } 
-            // If the user is authenticated but not an admin, allow access to private user routes
-            else if (auth) {
+            if (auth) {
                 return <Outlet/>
             } 
             // If not authenticated, redirect to the public home page

@@ -40,6 +40,7 @@
              withCredentials: true // Ensure credentials are included in the request for session handling.
            }
          );
+
          setUser(res.data); // If successful, set the user data with the response.
        } catch(error) {
          setUser(null); // On failure (e.g., token invalid), reset user to null.
