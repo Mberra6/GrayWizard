@@ -109,7 +109,8 @@
         .noteText {
             padding-top: 50px;
             text-align: left;
-            align-items: left;
+            width: 80%;
+            margin: 0 auto;
             font-size: 1.8rem;
             color: #FFFFFF;
         }
@@ -137,6 +138,10 @@
         .largeText, .largeSubText, .listText, .listLargeText, .noteText {
             font-size: 1.4rem;
         }
+
+        .noteText {
+            width: 95%;
+        }
     }
 }
 
@@ -161,6 +166,9 @@
         .largeText, .largeSubText, .listText, .listLargeText, .noteText {
             font-size: 1.6rem;
         }
+        .noteText {
+            width: 90%;
+        }
     }
 }
 
@@ -171,6 +179,12 @@
         }
         .resultMessage {
             width: 85%; // Use more width as the screen gets larger
+        }
+        .largeText, .largeSubText, .listText, .listLargeText, .noteText {
+            font-size: 1.7rem;
+        }
+        .noteText {
+            width: 85%;
         }
     }
 }

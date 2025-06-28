@@ -16,20 +16,39 @@
                 gap: 40px; // Adds space between grid items
                 margin-bottom: 30px; // Adds space below the grid
 
-                /* Styling specific to each control within the wrapper */
-                div {
-                    position: relative; // Needed for absolute positioning of labels
-                    .firstName, .lastName, .email, .username, .createdAt {
-                        width: 100%; // Ensures controls fill their containers
-                        border: 2px solid var(--green-theme-main-color); // Borders the inputs for visual distinction
-                        padding: 16px 12px; // Pads the inside of the inputs for aesthetics
-                        transition: all 0.5s ease; // Smooth transitions for interaction states
-                        background-color: transparent; // Makes the input backgrounds transparent
-                        color: var(--green-theme-sub-text-color); // Text color for inputs
+                .profile__field {
+                    position: relative;
+                
+                    .input-wrapper {
+                        position: relative;
+                
+                        input {
+                            width: 100%;
+                            padding: 16px 40px 16px 12px; // right padding leaves room for the icon
+                            border: 2px solid var(--green-theme-main-color);
+                            background-color: transparent;
+                            color: var(--green-theme-sub-text-color);
+                            transition: all 0.5s ease;
+                        }
+                
+                        .edit-icon-inside {
+                            position: absolute;
+                            top: 50%;
+                            right: 12px;
+                            transform: translateY(-50%);
+                            font-size: 16px;
+                            color: var(--green-theme-sub-text-color);
+                            cursor: pointer;
+                            transition: color 0.3s ease;
+                
+                            &:hover {
+                                color: var(--green-theme-main-color);
+                            }
+                        }
                     }
 
                     /* Styling for labels associated with each input */
-                    .firstNameLabel, .lastNameLabel, .emailLabel, .usernameLabel, .createdAtLabel {
+                    .first_nameLabel, .last_nameLabel, .emailLabel, .usernameLabel, .passwordLabel, .created_atLabel {
                         font-weight: 500; // Slightly bolds the label text
                         position: absolute; // Positions the labels absolutely within their relative containers
                         font-size: 18px; // Enlarges the label on focus or when input is valid
@@ -39,15 +58,113 @@
                     }
 
                     /* Styling and interactions for inputs when focused or filled */
-                    .firstName:focus, .lastName:focus, .email:focus, .username:focus, .createdAt:focus {
+                    .first_name:focus, .last_name:focus, .email:focus, .username:focus, .password:focus, .created_at:focus {
                         outline: none; // Removes default focus outline
                     }
                 }
+                
+            }
+        }
+    }
+
+    
+    /* Modal overlay */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Modal content */
+    .modal-content {
+        background: #fff;
+        padding: 4rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        min-width: 350px;
+        max-width: 90%;
+        text-align: center;
+    
+        h3 {
+            margin-bottom: 2rem;
+            color: var(--green-theme-main-color);
+            font-size: 2rem;
+        }
+    
+        input {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+        }
+
+        .negative {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #cc0000;
+        }
+    }
+    
+    /* Modal buttons */
+    .modal-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+    
+            &:first-child {
+                background-color: var(--green-theme-main-color);
+                color: white;
+            }
+    
+            &:last-child {
+                background-color: #ddd;
+                color: #333;
+            }
+    
+            &:hover {
+                opacity: 0.9;
             }
         }
     }
 }
 
+@media (max-width: 480px) {
+    .profile__content__form {
+        text-align: center; // Centers text within the form
+
+        &__controlsWrapper {
+            grid-template-columns: repeat(1, 1fr); // Keeps a single column layout in the grid on smaller screens
+        }
+    }
+
+    .profile {
+        .modal-content {
+            min-width: unset;
+            max-width: 80%;
+            padding: 4rem;
+        }
+    }
+
+}
 /* Media query for adjusting styles on screens with a maximum width of 768px */
 @media only screen and (max-width: 768px) {
     .profile__content__form {

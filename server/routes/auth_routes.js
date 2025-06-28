@@ -11,10 +11,19 @@ router.get('/auth', checkAuth.authCheckHandler);
 // Route to get user's details
 router.get('/account/:userId', userControllers.userDetails);
 
-// Route to update user's details
-router.put('/account/update/:userId', userControllers.userUpdateDetails);
+// Route to update user's email
+router.put('/account/update/email/:userId', userControllers.userUpdateEmail);
+
+// Route to update user's username
+router.put('/account/update/username/:userId', userControllers.userUpdateUsername);
+
+// Route to update user's first name
+router.put('/account/update/first-name/:userId', userControllers.userUpdateFirstName);
+
+// Route to update user's last name
+router.put('/account/update/last-name/:userId', userControllers.userUpdateLastName);
 
 // Route to change user's password
-router.put('/account/changepassword/:userId', userControllers.userChangePassword);
+router.put('/account/update/password/:userId', userControllers.userChangePassword);
 
 module.exports = router; // Export router instance

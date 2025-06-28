@@ -91,11 +91,55 @@ class Members {
     static updatePasswordById = (id, newPassword) => {
         let sql = `
         UPDATE Members
-        SET password = '${newPassword}'
-        WHERE member_id = '${id}';
+        SET password = ?
+        WHERE member_id = ?;
         `; // SQL query to update member password
 
-        return db.execute(sql); // Execute SQL query to update member password
+        return db.execute(sql, [newPassword, id]); // Execute SQL query to update member password
+    }
+
+    // Static method to update member username by ID
+    static updateUsernameById = (id, newUsername) => {
+        let sql = `
+        UPDATE Members
+        SET username = ?
+        WHERE member_id = ?;
+        `; // SQL query to update member username
+
+        return db.execute(sql, [newUsername, id]); // Execute SQL query to update member username
+    }
+
+    // Static method to update member email by ID
+    static updateEmailById = (id, newEmail) => {
+        let sql = `
+        UPDATE Members
+        SET email = ?
+        WHERE member_id = ?;
+        `; // SQL query to update member email
+
+        return db.execute(sql, [newEmail, id]); // Execute SQL query to update member email
+    }
+
+    // Static method to update member first name by ID
+    static updateFirstNameById = (id, newFirstName) => {
+        let sql = `
+        UPDATE Members
+        SET first_name = ?
+        WHERE member_id = ?;
+        `; // SQL query to update member first name
+
+        return db.execute(sql, [newFirstName, id]); // Execute SQL query to update member first name
+    }
+
+    // Static method to update member last name by ID (secure)
+    static updateLastNameById = (id, newLastName) => {
+        const sql = `
+            UPDATE Members
+            SET last_name = ?
+            WHERE member_id = ?;
+        `;
+
+        return db.execute(sql, [newLastName, id]);
     }
 }
 

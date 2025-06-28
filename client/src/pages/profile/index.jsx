@@ -1,6 +1,6 @@
 // Import necessary libraries and components
 import React, { useState, useEffect } from 'react';
-import { FaUserAlt } from "react-icons/fa"; // Icon for visual enhancement
+import { FaUserAlt, FaEdit } from "react-icons/fa"; // Icon for visual enhancement
 import PageHeader from '../../components/pageHeader'; // Reusable component for page headers
 import { Animate } from 'react-simple-animate'; // Animation library to add visual effects
 import { useAuth } from "../../AuthProvider";
@@ -14,8 +14,17 @@ const Profile = () => {
         email: '',
         first_name: '',
         last_name: '',
-        created_at: ''
+        created_at: '',
+        password: '********'
     });
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [fieldToEdit, setFieldToEdit] = useState('');
+    const [newValue, setNewValue] = useState('');
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     // Fetch user data from the server
     useEffect(() => {
@@ -48,6 +57,61 @@ const Profile = () => {
         fetchData();
     }, [user.id]);
 
+    const openModal = (field) => {
+        setFieldToEdit(field);
+        setNewValue(userData[field]);
+
+        // Reset password modal values
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setErrorMessage('');
+
+        setModalOpen(true);
+    };
+
+    const updateEndpointMap = {
+        email: 'email',
+        username: 'username',
+        first_name: 'first-name',
+        last_name: 'last-name',
+        password: 'password'
+    };
+
+    const handleUpdate = async () => {
+        const token = localStorage.getItem('token');
+        const updated = { ...userData, [fieldToEdit]: newValue };
+
+        // Skip if trying to edit a non-editable field (like created_at)
+        if (!updateEndpointMap[fieldToEdit]) {
+            console.warn(`No endpoint configured for field: ${fieldToEdit}`);
+            return;
+        }
+
+        const endpoint = `${process.env.REACT_APP_API_URL}/api/member/account/update/${updateEndpointMap[fieldToEdit]}/${user.id}`;
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: "Bearer " + token
+                },
+                body: JSON.stringify({ [fieldToEdit]: newValue })
+            });
+            if (response.ok) {
+                setUserData(updated);
+                setModalOpen(false);
+            } else {
+                const errData = await response.json();
+                console.error('Error updating:', errData.message);
+                setErrorMessage(errData.message);
+            }
+        } catch (error) {
+            console.error('Update error:', error.message);
+        }
+    };
+
     return (
         <section id="profile" className='profile'>
             <PageHeader
@@ -64,30 +128,78 @@ const Profile = () => {
                 >
                     <form className='profile__content__form'>
                         <div className='profile__content__form__controlsWrapper'>
-                            <div>
-                                <input readOnly value={userData.first_name} name="first_name" className='firstName' type='text'/>
-                                <label htmlFor='first_name' className='firstNameLabel'>First Name</label>
-                            </div>
-                            <div>
-                                <input readOnly value={userData.last_name} name="last_name" className='lastName' type='text'/>
-                                <label htmlFor='last_name' className='lastNameLabel'>Last Name</label>
-                            </div>
-                            <div>
-                                <input readOnly value={userData.username} name="username" className='username' type='text'/>
-                                <label htmlFor='username' className='usernameLabel'>Username</label>
-                            </div>
-                            <div>
-                                <input readOnly value={userData.email} name="email" className='email' type='text'/>
-                                <label htmlFor='email' className='emailLabel'>Email</label>
-                            </div>
-                            <div>
-                                <input readOnly value={userData.created_at} name="created_at" className='createdAt' type='text'/>
-                                <label htmlFor='created_at' className='createdAtLabel'>Created</label>
-                            </div>
+                            {['first_name', 'last_name', 'username', 'email', 'password', 'created_at'].map((field) => (
+                                <div key={field} className='profile__field'>
+                                    <div className="input-wrapper">
+                                        <input
+                                        readOnly
+                                        value={userData[field]}
+                                        name={field}
+                                        className={field}
+                                        type='text'
+                                        />
+                                        {field !== 'created_at' && (
+                                        <FaEdit
+                                            className='edit-icon-inside'
+                                            onClick={() => openModal(field)}
+                                        />
+                                        )}
+                                    </div>
+                                    <label htmlFor={field} className={`${field}Label`}>
+                                        {field.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                    </label>
+                                </div>
+                            ))}
                         </div>
                     </form>
                 </Animate>
             </div>
+            {modalOpen && (
+                <div className='modal'>
+                    <div className='modal-content'>
+                        <h3>Update {fieldToEdit.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}</h3>
+
+                        {fieldToEdit === 'password' ? (
+                            <>
+                            <input
+                                type='password'
+                                placeholder='Current Password'
+                                value={currentPassword}
+                                onChange={(e) => setCurrentPassword(e.target.value)}
+                            />
+                            <input
+                                type='password'
+                                placeholder='New Password'
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                            />
+                            <input
+                                type='password'
+                                placeholder='Confirm New Password'
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                            </>
+                        ) : (
+                            <input
+                            type='text'
+                            value={newValue}
+                            onChange={(e) => setNewValue(e.target.value)}
+                            />
+                        )}
+
+                        <div className='modal-actions'>
+                            <button onClick={handleUpdate}>Save</button>
+                            <button onClick={() => setModalOpen(false)}>Cancel</button>
+                        </div>
+                        { (() => {
+                                if (errorMessage.length > 0) {
+                                    return (<p className='negative'>{errorMessage}</p>)
+                                }
+                        })()}
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
